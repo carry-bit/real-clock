@@ -1,5 +1,10 @@
 const app = require('express')();
 
+// create http server instead of using
+// builtin express.js server
+const http = require('http');
+const httpServer = http.createServer(app);
+
 const serverDetail = {
     port: 3000,
     host: 'localhost'
@@ -15,6 +20,6 @@ const routes = require('./routes/web');
 // combine routes to the server
 helper.combineRoutes(app, routes.getRoutes);
 
-app.listen(serverDetail.port, serverDetail.host, () => {
+httpServer.listen(serverDetail.port, serverDetail.host, () => {
     console.log("Listening on http://%s:%s", serverDetail.host, serverDetail.port);
 })
