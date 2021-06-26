@@ -5,6 +5,11 @@ const app = require('express')();
 const http = require('http');
 const httpServer = http.createServer(app);
 
+// create socket.io instance and connect
+// socket.io server to httpServer
+const socketIO = require('socket.io');
+const io = new socketIO.Server(httpServer);
+
 const serverDetail = {
     port: 3000,
     host: 'localhost'
