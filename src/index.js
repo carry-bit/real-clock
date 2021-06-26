@@ -25,11 +25,11 @@ const routes = require('./routes/web');
 const ioEvents = require('./events/io');
 
 // combine routes to the server
-helper.combineRoutes(app, routes.getRoutes);
+helper.combineRoutes(app, routes.getRoutes, true);
 
 // combine all io events
-helper.combineSocketIOEvents(io, ioEvents.getEvents)
+helper.combineSocketIOEvents(io, ioEvents.getEvents, true);
 
 httpServer.listen(serverDetail.port, serverDetail.host, () => {
-    console.log("-----------------\nListening on http://%s:%s", serverDetail.host, serverDetail.port);
+    console.log("\n\nListening on http://%s:%s", serverDetail.host, serverDetail.port);
 })

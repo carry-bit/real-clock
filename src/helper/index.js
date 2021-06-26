@@ -1,4 +1,4 @@
-const combineRoutes = (expressServer, routes) => {
+const combineRoutes = (expressServer, routes, _debugger = false) => {
     routes.map(route => {
         switch (route.method) {
             case "get":
@@ -13,15 +13,17 @@ const combineRoutes = (expressServer, routes) => {
                 console.error("Not recognized method : %s", route.method);
         }
 
-        console.log("Route : [%s, %s]", route.method, route.url)
+        if (_debugger)
+            console.log("Route : [%s, %s]", route.method, route.url)
     })
 }
 
-const combineSocketIOEvents = (socketIOServer, events) => {
+const combineSocketIOEvents = (socketIOServer, events, _debugger = false) => {
     events.map(event => {
         socketIOServer.on(event.event, event._);
 
-        console.log("IO Event : Listening on `%s` event.", event.event);
+        if (_debugger)
+            console.log("IO Event : Listening on `%s` event.", event.event);
     });
 }
 
