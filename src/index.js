@@ -19,12 +19,17 @@ const serverDetail = {
 const helper = require('./helper/index');
 
 // define routes in routes/web.js file
-// they will loaded here
 const routes = require('./routes/web');
+
+// define io events in events/io.js file
+const ioEvents = require('./events/io');
 
 // combine routes to the server
 helper.combineRoutes(app, routes.getRoutes);
 
+// combine all io events
+helper.combineSocketIOEvents(io, ioEvents.getEvents)
+
 httpServer.listen(serverDetail.port, serverDetail.host, () => {
-    console.log("Listening on http://%s:%s", serverDetail.host, serverDetail.port);
+    console.log("-----------------\nListening on http://%s:%s", serverDetail.host, serverDetail.port);
 })

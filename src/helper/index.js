@@ -13,8 +13,17 @@ const combineRoutes = (expressServer, routes) => {
                 console.error("Not recognized method : %s", route.method);
         }
 
-        console.log("Route [%s, %s]", route.method, route.url)
+        console.log("Route : [%s, %s]", route.method, route.url)
     })
 }
 
+const combineSocketIOEvents = (socketIOServer, events) => {
+    events.map(event => {
+        socketIOServer.on(event.event, event._);
+
+        console.log("IO Event : Listening on `%s` event.", event.event);
+    });
+}
+
 exports.combineRoutes = combineRoutes;
+exports.combineSocketIOEvents = combineSocketIOEvents;
